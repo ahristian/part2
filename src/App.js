@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+const App = () => {
+  const Display = ({ counter }) => (
+    <div>
+      {" "}
+      Like Count <b>{counter}</b>
     </div>
   );
-}
+
+  const Button = ({ handleClick, text }) => (
+    <button onClick={handleClick}>{text}</button>
+  );
+
+  const [counter, setCounter] = useState(0);
+  const resetCount = () => setCounter(0);
+  const increaseByOne = () => setCounter(counter + 1);
+  const decreaseByOne = () => setCounter(counter - 1);
+
+  return (
+    <div className="App">
+      <Display counter={counter} />
+      <Button handleClick={increaseByOne} text="+1" />
+      <Button handleClick={decreaseByOne} text="-1" />
+      <Button handleClick={resetCount} text="reset" />
+    </div>
+  );
+};
 
 export default App;
